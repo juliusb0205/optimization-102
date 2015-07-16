@@ -148,7 +148,7 @@ Read fragment views/bboy_fans-2 (0.0ms)
 ```
 
 ## Further reading:
-@bramirez on using memcached as an alertnative cache store:
+@bramirez on using memcached as an alternative cache store:
 * https://github.com/clinic-it/zen/blob/master/tech_sessions/mem_cached.md
 
 @bramirez's intro to fragment caching:
