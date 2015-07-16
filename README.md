@@ -32,11 +32,11 @@ end
 
 ```sql
 SELECT * FROM backstreet_boys
-SELECT name FROM fans WHERE backstreet_boy_id = 1 LIMIT 1
-SELECT name FROM fans WHERE backstreet_boy_id = 2 LIMIT 1
-SELECT name FROM fans WHERE backstreet_boy_id = 3 LIMIT 1
-SELECT name FROM fans WHERE backstreet_boy_id = 4 LIMIT 1
-SELECT name FROM fans WHERE backstreet_boy_id = 5 LIMIT 1
+SELECT * FROM fans WHERE backstreet_boy_id = 1 LIMIT 1
+SELECT * FROM fans WHERE backstreet_boy_id = 2 LIMIT 1
+SELECT * FROM fans WHERE backstreet_boy_id = 3 LIMIT 1
+SELECT * FROM fans WHERE backstreet_boy_id = 4 LIMIT 1
+SELECT * FROM fans WHERE backstreet_boy_id = 5 LIMIT 1
 ```
    
 ## The Solution: Eager Loading
