@@ -1,7 +1,8 @@
 # Optimization 102
 
 
-##Review of Indexing
+##Review
+###DB Indexing
 * Just like an index at the start of a book.
 * Make it easier to look for a specific item, because columns in question are catalogued.
 
@@ -10,6 +11,13 @@ create table :fans do |t|
   t.string :name
   t.references :backstreet_boy, :index => true
 end
+```
+
+###Partials
+* Remember to render by collection when possible:
+
+```ruby
+= render :partial => 'bboy_fan', :collection => bboy.fans
 ```
 
 ##The Problem: N+1
@@ -81,19 +89,60 @@ BackstreetBoy.preload(:fans).where(:fans => {:name => 'Jomelina'})
 #### Solution/Workaround?
 * Use a combination of `eager_load` and `preload`.
 
-##5. Caching
-### Low-level caching
-
-
-* Each partial takes roughly 0.1ms to render. Fast? **I think not.**
-* Imagine if you had over 9000 records.
-* Remember to render by collection when possible:
+##4. Caching
+on your <environment>.rb file, set:
 
 ```ruby
-= render :partial => 'bboy_fan', :collection => bboy.fans
+config.action_controller.perform_caching = true
+# :file_store, :memory_store, :mem_cache_store
+config.cache_store = :file_store, '/tmp/backstreet_cache'
+```
+### SQL caching
+`@bboy = BackstreetBoy.all`
+
+### Low-level caching
+* Manually/Directly store data in the cache store
+```ruby
+Rails.cache.fetch('nick_carters_biggest_fan') { 'James' }
+=> "James"
+Rails.cache.fetch('nick_carters_biggest_fan')
+=> "James"
 ```
 
-##5. Caching
+### Fragment caching
+
+* Each partial takes roughly 0.1ms to render. Fast? **I think not.**
+* Imagine if you had over 9000 records!?.
+
+```ruby
+- cache "bboy_fans-#{bboy.id}" do
+  = render :partial => 'bboy_fan', :collection => bboy.fans
+```
+
+Write:
+```
+Exist fragment? views/bboy_fans-2 (1.6ms)
+Write fragment views/bboy_fans-2 (0.9ms)
+```
+
+Read:
+```
+Exist fragment? views/bboy_fans-2 (0.6ms)
+Read fragment views/bboy_fans-2 (0.0ms)
+```
+
+* Expire fragments when changes occur:
+`expire_fragment("bboy_fans-#{@fan.bboy.id}"`
+
+### Russian doll caching.
+* nested fragments
+
+```ruby
+- cache "bboy_fans-#{bboy.id}" do
+  - bboy.fans.each do |fan|
+    - cache "fan-#{fan.id}" do
+      = render :partial => 'bboy_fan', :locals => {:fan => fan}
+```
 
 
 4. Partials.
