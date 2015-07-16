@@ -18,6 +18,8 @@ end
 
 ```ruby
 = render :partial => 'bboy_fan', :collection => bboy.fans
+
+# renders _fan.haml
 = render bboy.fans
 ```
 
