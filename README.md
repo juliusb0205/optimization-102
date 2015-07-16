@@ -4,7 +4,7 @@
 ##Review
 ###DB Indexing
 * Just like an index at the start of a book.
-* Make it easier to look for a specific item, because columns in question are catalogued.
+* Makes it easier to look for a specific record, because specific columns are catalogued.
 
 ```ruby
 create table :fans do |t|
