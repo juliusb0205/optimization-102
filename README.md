@@ -137,7 +137,7 @@ Read fragment views/bboy_fans-2 (0.0ms)
 * Expire fragments when changes occur:
 `expire_fragment("bboy_fans-#{@fan.bboy.id}")`
 
-### Russian doll caching.
+### Russian doll caching
 * Nested fragments
 
 ```ruby
