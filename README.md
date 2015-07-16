@@ -153,3 +153,7 @@ Read fragment views/bboy_fans-2 (0.0ms)
 
 @bramirez's intro to fragment caching:
 * https://github.com/clinic-it/zen/blob/master/tech_sessions/FragmentCaching.md
+
+
+##Sources:
+* Mamaya na later.
