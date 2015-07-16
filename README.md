@@ -132,10 +132,10 @@ Read fragment views/bboy_fans-2 (0.0ms)
 ```
 
 * Expire fragments when changes occur:
-`expire_fragment("bboy_fans-#{@fan.bboy.id}"`
+`expire_fragment("bboy_fans-#{@fan.bboy.id}")`
 
 ### Russian doll caching.
-* nested fragments
+* Nested fragments
 
 ```ruby
 - cache "bboy_fans-#{bboy.id}" do
@@ -144,12 +144,8 @@ Read fragment views/bboy_fans-2 (0.0ms)
       = render :partial => 'bboy_fan', :locals => {:fan => fan}
 ```
 
-
-4. Partials.
-   a. speed of render
-   b. use collection when able
-5. Caching
-   a. page caching
-   b. low-level caching
-   c. fragment caching
-6. Wrap up
+## Further reading:
+### @bramirez on using memcached as an alertnative cache store:
+* https://github.com/clinic-it/zen/blob/master/tech_sessions/mem_cached.md
+### @bramirez's intro to fragment caching:
+* https://github.com/clinic-it/zen/blob/master/tech_sessions/FragmentCaching.md
