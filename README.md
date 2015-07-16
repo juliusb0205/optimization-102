@@ -18,6 +18,7 @@ end
 
 ```ruby
 = render :partial => 'bboy_fan', :collection => bboy.fans
+= render bboy.fans
 ```
 
 ##The Problem: N+1
